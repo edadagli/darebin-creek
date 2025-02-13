@@ -1,0 +1,41 @@
+import pandas as pd
+from matplotlib import pyplot as plt
+%config InlineBackend.figure_formats = ['svg']
+%matplotlib inline
+frog_df = pd.read_csv('C:/Users/edada/Desktop/Export/Threatened Non-sensitive Species.csv')
+import plotly.express as px
+import pandas as pd
+
+df = pd.read_csv('C:/Users/edada/Desktop/Export/Threatened Non-sensitive Species.csv')
+color_scale = [(0, 'green'), (1,'blue')]
+
+fig = px.scatter_mapbox(df,
+                        lat="Latitude (GDA94)", 
+                        lon="Longitude ( GDA94)", 
+                        hover_name="Common Name", 
+                        hover_data=["Common Name", "Total Count"],
+                        color="Total Count",
+                        color_continuous_scale=color_scale,
+                        #size=5,
+                        zoom=12, 
+                        height=800,
+                        width=800)
+
+
+fig = px.scatter_mapbox(df,
+                        lat="Latitude (GDA94)", 
+                        lon="Longitude ( GDA94)", 
+                        hover_name="Common Name", 
+                        hover_data=["Common Name", "Total Count"],
+                        color="Total Count",
+                        color_continuous_scale=color_scale,
+                        #size=5,
+                        zoom=13, 
+                        height=800,
+                        width=800)
+
+fig.update_layout(mapbox_style="open-street-map")
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+#fig.update_geos(center=[-37, 145], projection="natural earth", visible=True)
+
+fig.show()
